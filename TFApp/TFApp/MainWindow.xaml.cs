@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace TFApp
 {
     /// <summary>
@@ -20,9 +21,20 @@ namespace TFApp
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void LoginToAccount(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SigninNewAccount(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
