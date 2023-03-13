@@ -44,5 +44,15 @@
     <Compile Include="ClassBIZ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IO\IO.csproj">
+      <Project>{428a84c4-a2bf-473d-aba3-c1403071cdfb}</Project>
+      <Name>IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repo\Repo.csproj">
+      <Project>{30b0c4c6-ca21-4175-b58b-21490d97b74a}</Project>
+      <Name>Repo</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
