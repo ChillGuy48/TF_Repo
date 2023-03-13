@@ -23,5 +23,10 @@ namespace TFApp
         {
             InitializeComponent();
         }
+
+        private void Logud(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,0 +1,7 @@
+C:\Users\dann6090\Source\Repos\TF_Repo\TFApp\TFApp\obj\Debug\TFApp.csproj.AssemblyReference.cache
+C:\Users\dann6090\Source\Repos\TF_Repo\TFApp\TFApp\obj\Debug\TFApp.csproj.SuggestedBindingRedirects.cache
+C:\Users\dann6090\Source\Repos\TF_Repo\TFApp\TFApp\obj\Debug\MainWindow.g.cs
+C:\Users\dann6090\Source\Repos\TF_Repo\TFApp\TFApp\obj\Debug\Oversigt.g.cs
+C:\Users\dann6090\Source\Repos\TF_Repo\TFApp\TFApp\obj\Debug\App.g.cs
+C:\Users\dann6090\Source\Repos\TF_Repo\TFApp\TFApp\obj\Debug\TFApp_MarkupCompile.cache
+C:\Users\dann6090\Source\Repos\TF_Repo\TFApp\TFApp\obj\Debug\TFApp_MarkupCompile.lref

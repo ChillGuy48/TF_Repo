@@ -6,11 +6,69 @@
         xmlns:local="clr-namespace:TFApp"
         mc:Ignorable="d"
         Title="Oversigt" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="MainGrid">
+        <!--Main grid-->
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <!--Logo top left source-->
+        <Image Grid.Column="0"
+               Grid.Row="0"/>
+        <!--Log ud Grid-->
+        <Grid x:Name="LogUdGrid"
+            Grid.Column="3"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            
+            <!--Label med username-->
+            <Label Content="{Binding x}"
+               Grid.Column="3"
+               Grid.Row="1"
+               />
+            <!--ID-->
+            <Label Content="{Binding x}"
+               Grid.Column="3"
+               Grid.Row="2"
+               />
+            <!--Log ud top right-->
+            <Button Grid.Column="3"
+               Grid.Row="0"
+               Margin="3"
+               Content="Log Ud"
+               HorizontalContentAlignment="Center"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               VerticalContentAlignment="Center"
+               Background="LightGray"
+                Click="Logud"/>
+        </Grid>
+       
+        <!--Middle left-->
+        <Button Grid.Column="1"
+                Grid.Row="1"
+                Content="Energi Barometer"
+                Margin="20"
+                FontSize="32"
+                Click="Energibarometer"/>
+        <!--Middle right-->
+        <Button Grid.Column="2"
+                Grid.Row="1"
+                Content="Rediger Bruger"
+                Margin="20"
+                FontSize="32"
+                Click="Energibarometer"/>
+
     </Grid>
 </Window>
