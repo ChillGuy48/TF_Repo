@@ -28,5 +28,10 @@ namespace TFApp
         {
 
         }
+
+        private void Energibarometer(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
