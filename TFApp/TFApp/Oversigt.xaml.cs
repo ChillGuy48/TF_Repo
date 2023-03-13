@@ -33,5 +33,10 @@ namespace TFApp
         {
 
         }
+
+        private void RedigerBruger(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

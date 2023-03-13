@@ -68,7 +68,7 @@
                 Content="Rediger Bruger"
                 Margin="20"
                 FontSize="32"
-                Click="Energibarometer"/>
+                Click="RedigerBruger"/>
 
     </Grid>
 </Window>
