@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIZ;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace TFApp
     /// </summary>
     public partial class Oversigt : Window
     {
+        ClassBIZ BIZ;
         public Oversigt()
         {
             InitializeComponent();
+            BIZ = new ClassBIZ();
         }
 
         private void Logud(object sender, RoutedEventArgs e)

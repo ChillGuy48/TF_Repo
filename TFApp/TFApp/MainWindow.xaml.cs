@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIZ;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,10 +22,12 @@ namespace TFApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        ClassBIZ BIZ;
 
         public MainWindow()
         {
             InitializeComponent();
+            BIZ = new ClassBIZ();
         }
 
         private void LoginToAccount(object sender, RoutedEventArgs e)
