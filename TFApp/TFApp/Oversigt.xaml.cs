@@ -21,10 +21,10 @@ namespace TFApp
     public partial class Oversigt : Window
     {
         ClassBIZ BIZ;
-        public Oversigt()
+        public Oversigt(ClassBIZ inBIZ)
         {
             InitializeComponent();
-            BIZ = new ClassBIZ();
+            BIZ = inBIZ;
         }
 
         private void Logud(object sender, RoutedEventArgs e)
