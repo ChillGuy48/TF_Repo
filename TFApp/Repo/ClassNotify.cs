@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Repo
 {
@@ -15,7 +16,7 @@ namespace Repo
 
         }
 
-        protected void Notify(string propertyName)
+        protected void Notify([CallerMemberName] string propertyName = null)
         {
             if(this.PropertyChanged != null)
             {

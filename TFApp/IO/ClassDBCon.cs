@@ -132,6 +132,25 @@ namespace IO
             return res;
         }
 
+        protected int ExecuteScalarInDB(SqlCommand inCommand)
+        {
+            int res = 0;
+            try
+            {
+                OpenDB();
+                res = Convert.ToInt32(inCommand.ExecuteScalar());
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                CloseDB();
+            }
+            return res;
+        }
+
         /// <summary>
         /// Denne metode håndtere forespørgelser til databasen som skal returnere et resultatsæt.
         /// Det resultatsæt der modtages fra DB, konverteres over i en collection af typen DataTable
