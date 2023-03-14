@@ -1,0 +1,9 @@
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\IO\bin\Debug\IO.dll
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\IO\bin\Debug\IO.pdb
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\IO\bin\Debug\Repo.dll
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\IO\bin\Debug\Repo.pdb
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\IO\obj\Debug\IO.csproj.AssemblyReference.cache
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\IO\obj\Debug\IO.csproj.CoreCompileInputs.cache
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\IO\obj\Debug\IO.csproj.CopyComplete
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\IO\obj\Debug\IO.dll
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\IO\obj\Debug\IO.pdb

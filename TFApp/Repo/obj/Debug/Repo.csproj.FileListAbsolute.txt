@@ -1,0 +1,6 @@
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\Repo\bin\Debug\Repo.dll
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\Repo\bin\Debug\Repo.pdb
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\Repo\obj\Debug\Repo.csproj.AssemblyReference.cache
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\Repo\obj\Debug\Repo.csproj.CoreCompileInputs.cache
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\Repo\obj\Debug\Repo.dll
+C:\Users\mari76p5\source\repos\TF_Repo\TFApp\Repo\obj\Debug\Repo.pdb

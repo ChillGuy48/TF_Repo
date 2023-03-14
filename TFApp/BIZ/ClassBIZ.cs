@@ -8,7 +8,7 @@ using Repo;
 
 namespace BIZ
 {
-    public class ClassBIZ
+    public class ClassBIZ : ClassNotify
     {
         public ClassBIZ()
         {

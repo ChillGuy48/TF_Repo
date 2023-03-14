@@ -32,7 +32,7 @@ namespace TFApp
 
         }
 
-        private void SigninNewAccount(object sender, RoutedEventArgs e)
+        private void RegisterNewAccount(object sender, RoutedEventArgs e)
         {
 
         }
