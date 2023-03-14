@@ -10,10 +10,10 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Converters;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 
 namespace TFApp
 {
@@ -28,11 +28,15 @@ namespace TFApp
         {
             InitializeComponent();
             BIZ = new ClassBIZ();
+            DataContext = BIZ;
         }
+        
+
 
         private void LoginToAccount(object sender, RoutedEventArgs e)
         {
-
+            //BIZ.loginUser.username = "hej";
+            MessageBox.Show($"{BIZ.loginUser.username}", "ERROR", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         private void RegisterNewAccount(object sender, RoutedEventArgs e)

@@ -25,6 +25,7 @@ namespace TFApp
         {
             InitializeComponent();
             BIZ = inBIZ;
+            DataContext = BIZ;
         }
 
         private void Logud(object sender, RoutedEventArgs e)
