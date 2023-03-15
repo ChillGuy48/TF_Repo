@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 using MySql.Data.MySqlClient;
 using Repo;
 
@@ -16,22 +17,21 @@ namespace IO
         public ClassTFAppDB()
         {
             //SetCon(@"Server = (localdb)\MSSQLLocalDB;Database=TFApp;Trusted_Connection=True;Trusted_Connection=True");
-            SetCon(@"SERVER=https://math027r.aspitcloud.dk; PORT=3306; Database=TF_RepoDB; UID=math027r; PASSWORD=yn0%uary(,R&");
+            SetCon(@"SERVER=math027r.aspitcloud.dk;PORT=3306;DATABASE=math027r_TF_RepoDB;UID=math027r;PASSWORD=GdrvU8DUovvHqfdowtJZ");
         }
 
         public int CreateUser(ClassUser inUser)
         {
             int res = 0;
 
-            string sqlQuery = @"INSERT INTO users (id, navn, username, password) VALUES
-                                (@id, @navn, @username, @password)
-                                SELECT SCOPE_IDENTITY()";
+            string sqlQuery = @"INSERT INTO users (userid, navn, username, password) VALUES
+                                (@userid, @navn, @username, @password)";
 
             try
             {
                 using (MySqlCommand cmd = new MySqlCommand(sqlQuery, con))
                 {
-                    cmd.Parameters.Add("@id", MySqlDbType.UInt32).Value = inUser.id;
+                    cmd.Parameters.Add("@userid", MySqlDbType.UInt32).Value = inUser.id;
                     cmd.Parameters.Add("@navn", MySqlDbType.VarChar).Value = inUser.navn;
                     cmd.Parameters.Add("@username", MySqlDbType.VarChar).Value = inUser.username;
                     cmd.Parameters.Add("@password", MySqlDbType.VarChar).Value = inUser.password;
@@ -47,6 +47,7 @@ namespace IO
             finally
             {
                 CloseDB();
+                GetUserData(inUser.username, inUser.password);
             }
 
             return res;
@@ -57,7 +58,7 @@ namespace IO
         {
             ClassUser res = new ClassUser();
 
-            string sqlQuery = "SELECT id, navn, username, password FROM users WHERE username = @username AND password = @password";
+            string sqlQuery = "SELECT userid, navn, username, password FROM users WHERE username = @username AND password = @password";
 
             try
             {
@@ -76,6 +77,8 @@ namespace IO
                         res.password = reader.GetString(3);
                     }
                     reader.Close();
+                    MessageBox.Show($"Id: {res.id}\nNavn: {res.navn}\nUsername: {res.username}\nPassword: {res.password}", "Login", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 }
 
             }

@@ -35,23 +35,47 @@ namespace TFApp
 
         private void LoginToAccount(object sender, RoutedEventArgs e)
         {
-            if (BIZ.temploginUser.username.Length > 0 && BIZ.temploginUser.username.Length <= 64)
+            if (BIZ.loginUser.username.Length > 0 && BIZ.loginUser.username.Length <= 64)
             {
-                if (BIZ.temploginUser.password.Length > 0 && BIZ.temploginUser.password.Length <= 64)
+                if (BIZ.loginUser.password.Length > 0 && BIZ.loginUser.password.Length <= 64)
                 {
-                    BIZ.Login(BIZ.temploginUser.username, BIZ.temploginUser.password);
+                    BIZ.Login(BIZ.loginUser.username, BIZ.loginUser.password);
+                }
+                else
+                {
+                    MessageBox.Show($"Hey dig der! dit Password overholder ikke længde reglerne. Max 64 karaktere", "Indtastsfejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }
             else
             {
                 MessageBox.Show($"Hey dig der! dit Username overholder ikke længde reglerne. Max 64 karaktere", "Indtastsfejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-            //BIZ.loginUser.username = "hej";
         }
 
         private void RegisterNewAccount(object sender, RoutedEventArgs e)
         {
-
+            if (BIZ.registerUser.navn.Length > 0 && BIZ.loginUser.navn.Length <= 64)
+            {
+                if (BIZ.registerUser.username.Length > 0 && BIZ.loginUser.username.Length <= 64)
+                {
+                    if (BIZ.registerUser.password.Length > 0 && BIZ.loginUser.password.Length <= 64)
+                    {
+                        BIZ.Register(BIZ.registerUser.navn, BIZ.registerUser.username, BIZ.registerUser.password);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Hey dig der! dit Password overholder ikke længde reglerne. Max 64 karaktere", "Indtastsfejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Hey dig der! dit Username overholder ikke længde reglerne. Max 64 karaktere", "Indtastsfejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+            }
+            else
+            {
+                MessageBox.Show($"Hey dig der! dit Navn overholder ikke længde reglerne. Max 64 karaktere", "Indtastsfejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
     }
 }

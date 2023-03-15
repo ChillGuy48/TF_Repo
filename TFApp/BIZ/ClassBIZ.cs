@@ -13,18 +13,14 @@ namespace BIZ
         ClassTFAppDB classTFAppDB;
 
         private ClassUser _loginUser;
-        private ClassUser _temploginUser; // slet og brug ikke temp versioner
         private ClassUser _registerUser;
-        private ClassUser _tempregisterUser; // slet og brug ikke temp versioner
         private ClassInput _energiBarometer;
 
         public ClassBIZ()
         {
             classTFAppDB = new ClassTFAppDB();
             loginUser = new ClassUser();
-            temploginUser = new ClassUser();
             registerUser = new ClassUser();
-            tempregisterUser = new ClassUser();
             energiBarometer = new ClassInput();
         }
 
@@ -40,18 +36,6 @@ namespace BIZ
                 Notify();
             }
         }
-        public ClassUser temploginUser
-        {
-            get { return _temploginUser; }
-            set
-            {
-                if (_temploginUser != value)
-                {
-                    _temploginUser = value;
-                }
-                Notify();
-            }
-        }
         public ClassUser registerUser
         {
             get { return _registerUser; }
@@ -60,18 +44,6 @@ namespace BIZ
                 if (_registerUser != value)
                 {
                     _registerUser = value;
-                }
-                Notify();
-            }
-        }
-        public ClassUser tempregisterUser
-        {
-            get { return _tempregisterUser; }
-            set
-            {
-                if (_tempregisterUser != value)
-                {
-                    _tempregisterUser = value;
                 }
                 Notify();
             }
@@ -94,16 +66,22 @@ namespace BIZ
         // Methods
         public void Login(string username, string password)
         {
-            classTFAppDB.GetUserData(username, password);
+            classTFAppDB.GetUserData(username, password, );
         }
         public void Logout()
         {
 
         }
 
-        public void Register()
+        public void Register(string navn, string username, string password)
         {
+            ClassUser registerUser = new ClassUser();
 
+            registerUser.navn = navn;
+            registerUser.username = username;
+            registerUser.password = password;
+
+            classTFAppDB.CreateUser(registerUser);
         }
     }
 }
