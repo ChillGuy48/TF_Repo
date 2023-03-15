@@ -23,59 +23,35 @@ namespace TFApp
     public partial class MainWindow : Window
     {
         ClassBIZ BIZ;
+        EditUserPage editUserPage;
+        EnergiBarometerPage energiBarometerPage;
+        LoginPage loginPage;
+        OversigtPage oversigtPage;
 
         public MainWindow()
         {
             InitializeComponent();
             BIZ = new ClassBIZ();
-            DataContext = BIZ;
+            MainGrid.DataContext = BIZ;
+
+            editUserPage = new EditUserPage(BIZ, this);
+            energiBarometerPage = new EnergiBarometerPage(BIZ, this);
+            loginPage = new LoginPage(BIZ, this);
+            oversigtPage = new OversigtPage(BIZ, this);
+
+            MainGrid.Children.Add(loginPage);
         }
 
-
-
-        private void LoginToAccount(object sender, RoutedEventArgs e)
+        public void ChangePage(string Page)
         {
-            if (BIZ.loginUser.username.Length > 0 && BIZ.loginUser.username.Length <= 64)
-            {
-                if (BIZ.loginUser.password.Length > 0 && BIZ.loginUser.password.Length <= 64)
-                {
-                    BIZ.Login(BIZ.loginUser.username, BIZ.loginUser.password);
-                }
-                else
-                {
-                    MessageBox.Show($"Hey dig der! dit Password overholder ikke længde reglerne. Max 64 karaktere", "Indtastsfejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                }
-            }
-            else
-            {
-                MessageBox.Show($"Hey dig der! dit Username overholder ikke længde reglerne. Max 64 karaktere", "Indtastsfejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-        }
-
-        private void RegisterNewAccount(object sender, RoutedEventArgs e)
-        {
-            if (BIZ.registerUser.navn.Length > 0 && BIZ.loginUser.navn.Length <= 64)
-            {
-                if (BIZ.registerUser.username.Length > 0 && BIZ.loginUser.username.Length <= 64)
-                {
-                    if (BIZ.registerUser.password.Length > 0 && BIZ.loginUser.password.Length <= 64)
-                    {
-                        BIZ.Register(BIZ.registerUser.navn, BIZ.registerUser.username, BIZ.registerUser.password);
-                    }
-                    else
-                    {
-                        MessageBox.Show($"Hey dig der! dit Password overholder ikke længde reglerne. Max 64 karaktere", "Indtastsfejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show($"Hey dig der! dit Username overholder ikke længde reglerne. Max 64 karaktere", "Indtastsfejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                }
-            }
-            else
-            {
-                MessageBox.Show($"Hey dig der! dit Navn overholder ikke længde reglerne. Max 64 karaktere", "Indtastsfejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
+            MainGrid.Children.Remove(editUserPage);
+            MainGrid.Children.Remove(energiBarometerPage);
+            MainGrid.Children.Remove(loginPage);
+            MainGrid.Children.Remove(oversigtPage);
+            if (Page == "editUserPage") MainGrid.Children.Add(editUserPage);
+            else if (Page == "energiBarometerPage") MainGrid.Children.Add(energiBarometerPage);
+            else if (Page == "loginPage") MainGrid.Children.Add(loginPage);
+            else if (Page == "oversigtPage") MainGrid.Children.Add(oversigtPage);
         }
     }
 }

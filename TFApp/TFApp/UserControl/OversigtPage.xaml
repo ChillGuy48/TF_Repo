@@ -1,12 +1,12 @@
-﻿<Window x:Class="TFApp.Oversigt"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TFApp"
-        mc:Ignorable="d"
-        Title="Oversigt" Height="450" Width="800">
-    <Grid x:Name="MainGrid">
+﻿<UserControl x:Class="TFApp.OversigtPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TFApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="MainGrid" Background="WhiteSmoke">
         <!--Main grid-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
@@ -27,20 +27,15 @@
             Grid.Column="3"
               Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
-            
+
             <!--Label med username-->
-            <Label Content="{Binding x}"
+            <Label Content="{Binding loginUser.username}"
+               HorizontalContentAlignment="Center"
                Grid.Column="3"
                Grid.Row="1"
-               />
-            <!--ID-->
-            <Label Content="{Binding x}"
-               Grid.Column="3"
-               Grid.Row="2"
                />
             <!--Log ud top right-->
             <Button Grid.Column="3"
@@ -54,7 +49,7 @@
                Background="LightGray"
                 Click="Logud"/>
         </Grid>
-       
+
         <!--Middle left-->
         <Button Grid.Column="1"
                 Grid.Row="1"
@@ -71,4 +66,4 @@
                 Click="RedigerBruger"/>
 
     </Grid>
-</Window>
+</UserControl>

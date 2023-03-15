@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="TFApp.LoginPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TFApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="MainGrid" Background="WhiteSmoke">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Log In" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+
+        <Grid Grid.Column="1" Grid.Row="2" Background="GhostWhite">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Brugernavn:" FontSize="16" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1"/>
+            <TextBox Text="{Binding loginUser.username, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="0,7" Grid.Column="1" Grid.Row="2"/>
+
+
+            <Label Content="Adgangskode:" FontSize="16" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="3"/>
+            <TextBox Text="{Binding loginUser.password, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="0,7" Grid.Column="1" Grid.Row="4"/>
+
+            <Button Click="LoginToAccount" Content="Log In" Margin="60,30" Grid.Column="1" Grid.Row="5"/>
+        </Grid>
+
+
+        <Border Background="LightGray" CornerRadius="5" Grid.Column="3" Grid.Row="1" Grid.RowSpan="3"/>
+
+
+        <Label Content="Register Account" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="5" Grid.Row="0"/>
+
+        <Grid Grid.Column="5" Grid.Row="2" Background="GhostWhite">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Fulde navn:" FontSize="16" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1"/>
+            <TextBox Text="{Binding registerUser.navn, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="0,7" Grid.Column="1" Grid.Row="2"/>
+
+
+            <Label Content="Brugernavn:" FontSize="16" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="3"/>
+            <TextBox Text="{Binding registerUser.username, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="0,7" Grid.Column="1" Grid.Row="4"/>
+
+
+
+            <Label Content="Adgangskode:" FontSize="16" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="5"/>
+            <TextBox Text="{Binding registerUser.password, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="0,7" Grid.Column="1" Grid.Row="6"/>
+
+            <Button Click="RegisterNewAccount" Content="Register" Margin="60,30" Grid.Column="1" Grid.Row="7"/>
+        </Grid>
+    </Grid>
+</UserControl>

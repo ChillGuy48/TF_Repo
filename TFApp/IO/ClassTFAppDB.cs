@@ -47,7 +47,6 @@ namespace IO
             finally
             {
                 CloseDB();
-                GetUserData(inUser.username, inUser.password);
             }
 
             return res;
@@ -75,16 +74,20 @@ namespace IO
                         res.navn = reader.GetString(1);
                         res.username = reader.GetString(2);
                         res.password = reader.GetString(3);
+                        MessageBox.Show($"Id: {res.id}\nNavn: {res.navn}\nUsername: {res.username}\nPassword: {res.password}", "Login", MessageBoxButton.OK, MessageBoxImage.Information);
+                        res.username = "logincorrect";
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Dit Login er forkert", "Login fejl", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        res.username = "logindeclied";
                     }
                     reader.Close();
-                    MessageBox.Show($"Id: {res.id}\nNavn: {res.navn}\nUsername: {res.username}\nPassword: {res.password}", "Login", MessageBoxButton.OK, MessageBoxImage.Information);
-
                 }
-
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show($"Dit Login er forkert : {ex.Message}", "Login fejl", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Der gik noget galt, Error Message:\n{ex.Message}", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return res;
         }

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\mari76p5\source\repos\TF_Repo\TFApp\TFApp\App.xaml
-4-1577376626
+5-538232327
 
-9-769817034
+10-290174257
 15483197613
-Edituser.xaml;Energibarometer.xaml;MainWindow.xaml;Oversigt.xaml;
+UserControl\EnergiBarometerPage.xaml;UserControl\EditUserPage.xaml;UserControl\LoginPage.xaml;MainWindow.xaml;UserControl\OversigtPage.xaml;
 
-True
+False
 

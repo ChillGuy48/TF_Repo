@@ -12,6 +12,8 @@ namespace BIZ
     {
         ClassTFAppDB classTFAppDB;
 
+        public ClassUser loginstatus;
+
         private ClassUser _loginUser;
         private ClassUser _registerUser;
         private ClassInput _energiBarometer;
@@ -23,6 +25,7 @@ namespace BIZ
             registerUser = new ClassUser();
             energiBarometer = new ClassInput();
         }
+
 
         public ClassUser loginUser
         {
@@ -66,11 +69,11 @@ namespace BIZ
         // Methods
         public void Login(string username, string password)
         {
-            classTFAppDB.GetUserData(username, password, );
+            loginstatus = classTFAppDB.GetUserData(username, password);
         }
         public void Logout()
         {
-
+            loginUser = new ClassUser();
         }
 
         public void Register(string navn, string username, string password)

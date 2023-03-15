@@ -55,11 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Edituser.xaml">
+    <Page Include="UserControl\EnergiBarometerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Energibarometer.xaml">
+    <Page Include="UserControl\EditUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -71,24 +75,27 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Edituser.xaml.cs">
-      <DependentUpon>Edituser.xaml</DependentUpon>
+    <Compile Include="UserControl\EnergiBarometerPage.xaml.cs">
+      <DependentUpon>EnergiBarometerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Energibarometer.xaml.cs">
-      <DependentUpon>Energibarometer.xaml</DependentUpon>
+    <Compile Include="UserControl\EditUserPage.xaml.cs">
+      <DependentUpon>EditUserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Oversigt.xaml">
+    <Page Include="UserControl\OversigtPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Oversigt.xaml.cs">
-      <DependentUpon>Oversigt.xaml</DependentUpon>
+    <Compile Include="UserControl\OversigtPage.xaml.cs">
+      <DependentUpon>OversigtPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
