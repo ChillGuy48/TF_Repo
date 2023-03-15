@@ -18,7 +18,7 @@ namespace Repo
 
         protected void Notify([CallerMemberName] string propertyName = null)
         {
-            if(this.PropertyChanged != null)
+            if (this.PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }

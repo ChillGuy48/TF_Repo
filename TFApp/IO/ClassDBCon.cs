@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
-using System.Data.SqlClient;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace IO
 {
     public class ClassDBCon
     {
         private string _connectionString;
-        protected SqlConnection con;
-        private SqlCommand _command;
+        protected MySqlConnection con;
+        private MySqlCommand _command;
 
         /// <summary>
         /// Default constructor med fast angivelse af connectionstring
@@ -30,7 +32,7 @@ namespace IO
         public ClassDBCon(string inConnectionString)
         {
             _connectionString = inConnectionString;
-            con = new SqlConnection(_connectionString);
+            con = new MySqlConnection(_connectionString);
         }
 
         /// <summary>
@@ -42,7 +44,7 @@ namespace IO
         protected void SetCon(string inConnectionString)
         {
             _connectionString = inConnectionString;
-            con = new SqlConnection(_connectionString);
+            con = new MySqlConnection(_connectionString);
         }
 
         /// <summary>
@@ -68,12 +70,12 @@ namespace IO
                     }
                     else // Hvis det ikke var på grund af en åben forbindelse, må det være på grund af manglende initialisering af 'con'
                     {
-                        this.con = new SqlConnection(_connectionString); // Initialisere 'con' med den angivne connectionstring
+                        this.con = new MySqlConnection(_connectionString); // Initialisere 'con' med den angivne connectionstring
                         OpenDB(); // Kalder 'sig selv' igen for at åbne forbindelsen
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
 
                 throw ex;
@@ -90,7 +92,7 @@ namespace IO
             {
                 this.con.Close(); // Lukker forbindelsen
             }
-            catch (SqlException ex) // Håndtere de exceptions (fejl) der måtte opstå under kommunikationen med databasen
+            catch (MySqlException ex) // Håndtere de exceptions (fejl) der måtte opstå under kommunikationen med databasen
             {
 
                 throw ex;
@@ -115,12 +117,12 @@ namespace IO
                 OpenDB(); // Åbner forbindelsen til DB
 
                 // Her initialiseres instansen af SqlCommand med parmeterne string sqlQuery og SqlConnection con
-                using (_command = new SqlCommand(sqlQuery, con))
+                using (_command = new MySqlCommand(sqlQuery, con))
                 {
                     res = _command.ExecuteNonQuery(); // Her kaldes databasen og den givne query eksekveres
                 }
             }
-            catch (SqlException ex) // Håndtere de exceptions (fejl) der måtte opstå under kommunikationen med databasen
+            catch (MySqlException ex) // Håndtere de exceptions (fejl) der måtte opstå under kommunikationen med databasen
             {
                 throw ex;
             }
@@ -128,11 +130,10 @@ namespace IO
             {
                 CloseDB(); // Lukker forbindelse til DB
             }
-
             return res;
         }
 
-        protected int ExecuteScalarInDB(SqlCommand inCommand)
+        protected int ExecuteScalarInDB(MySqlCommand inCommand)
         {
             int res = 0;
             try
@@ -140,7 +141,7 @@ namespace IO
                 OpenDB();
                 res = Convert.ToInt32(inCommand.ExecuteScalar());
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
                 throw ex;
             }
@@ -164,10 +165,10 @@ namespace IO
             {
                 OpenDB();
                 // Her initaliseres instansen af SqlCommand med parameterne string query og SqlConnection con
-                using (_command = new SqlCommand(sqlQuery, con))
+                using (_command = new MySqlCommand(sqlQuery, con))
                 {
                     // Her foretages kaldet til databasen ved, at der oprettes en ny instans af en SqlDataAdapter.
-                    using (SqlDataAdapter  adapter = new SqlDataAdapter(_command))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(_command))
                     {
                         adapter.Fill(dtRes); // Her transformeres data i 'adapter' til formatet DataTable som er
                                              // mere anvendligt i C# koden der skal modtages resultatet af
@@ -175,7 +176,7 @@ namespace IO
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
                 throw ex;
             }
@@ -206,12 +207,12 @@ namespace IO
                 // Opretter en ny instans af SqlCommand med parameterene sqlQuery og con,
                 // som indeholder henholdvis min sql forspørgelse og information omkring
                 // hvilken database data skal hentes fra.
-                using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
+                using (MySqlCommand cmd = new MySqlCommand(sqlQuery, con))
                 {
                     // Her eksekveres forespørgelsen på databasen og svaret gemmes i reader som er af datatypen
                     // SqlDataReader der har samme egenskaber som en StreamReader, altså egenskaber der gør den
                     // egnget til at modtage og holde en stream af tekst
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         // Hvis reader har modtaget et resultat fra databasen, skal den udføre koden i while loopet
                         while (reader.Read())
@@ -228,7 +229,7 @@ namespace IO
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
                 throw ex;
             }
@@ -247,7 +248,7 @@ namespace IO
         /// </summary>
         /// <param name="inCommand">SqlCommand</param>
         /// <returns>DataTable</returns>
-        protected DataTable MakeCallToStoredProcedure(SqlCommand inCommand)
+        protected DataTable MakeCallToStoredProcedure(MySqlCommand inCommand)
         {
             DataTable dtRes = new DataTable();
 
@@ -256,12 +257,12 @@ namespace IO
                 OpenDB(); // Åbner forbindelse til databasen
 
                 // Her initialisere en instans af SqlDataAdapter med værdien i inCommand
-                using (SqlDataAdapter adaoter = new SqlDataAdapter(inCommand))
+                using (MySqlDataAdapter adaoter = new MySqlDataAdapter(inCommand))
                 {
                     adaoter.Fill(dtRes); // her over føres data fra adapter til den DataTable, metoden skal returnere.
                 }
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
 
                 throw ex;

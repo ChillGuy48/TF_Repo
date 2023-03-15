@@ -10,14 +10,17 @@ namespace BIZ
 {
     public class ClassBIZ : ClassNotify
     {
+        ClassTFAppDB classTFAppDB;
+
         private ClassUser _loginUser;
-        private ClassUser _temploginUser;
+        private ClassUser _temploginUser; // slet og brug ikke temp versioner
         private ClassUser _registerUser;
-        private ClassUser _tempregisterUser;
+        private ClassUser _tempregisterUser; // slet og brug ikke temp versioner
         private ClassInput _energiBarometer;
 
         public ClassBIZ()
         {
+            classTFAppDB = new ClassTFAppDB();
             loginUser = new ClassUser();
             temploginUser = new ClassUser();
             registerUser = new ClassUser();
@@ -84,6 +87,23 @@ namespace BIZ
                 }
                 Notify();
             }
+        }
+
+
+
+        // Methods
+        public void Login(string username, string password)
+        {
+            classTFAppDB.GetUserData(username, password);
+        }
+        public void Logout()
+        {
+
+        }
+
+        public void Register()
+        {
+
         }
     }
 }

@@ -46,7 +46,7 @@
             <Label Content="Brugernavn:" FontSize="16" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1"/>
             <TextBox Text="{Binding temploginUser.username, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="0,7" Grid.Column="1" Grid.Row="2"/>
 
-            
+
             <Label Content="Adgangskode:" FontSize="16" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="3"/>
             <TextBox Text="{Binding temploginUser.password, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="0,7" Grid.Column="1" Grid.Row="4"/>
 
@@ -80,7 +80,7 @@
             <Label Content="Fulde navn:" FontSize="16" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1"/>
             <TextBox Text="{Binding registerUser.navn, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="0,7" Grid.Column="1" Grid.Row="2"/>
 
-         
+
             <Label Content="Brugernavn:" FontSize="16" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="3"/>
             <TextBox Text="{Binding registerUser.username, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Margin="0,7" Grid.Column="1" Grid.Row="4"/>
 

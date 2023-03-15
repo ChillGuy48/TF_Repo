@@ -30,13 +30,23 @@ namespace TFApp
             BIZ = new ClassBIZ();
             DataContext = BIZ;
         }
-        
+
 
 
         private void LoginToAccount(object sender, RoutedEventArgs e)
         {
+            if (BIZ.temploginUser.username.Length > 0 && BIZ.temploginUser.username.Length <= 64)
+            {
+                if (BIZ.temploginUser.password.Length > 0 && BIZ.temploginUser.password.Length <= 64)
+                {
+                    BIZ.Login(BIZ.temploginUser.username, BIZ.temploginUser.password);
+                }
+            }
+            else
+            {
+                MessageBox.Show($"Hey dig der! dit Username overholder ikke længde reglerne. Max 64 karaktere", "Indtastsfejl", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
             //BIZ.loginUser.username = "hej";
-            MessageBox.Show($"{BIZ.loginUser.username}", "ERROR", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
         private void RegisterNewAccount(object sender, RoutedEventArgs e)

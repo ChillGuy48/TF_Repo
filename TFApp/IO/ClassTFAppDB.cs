@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using MySql.Data.MySqlClient;
 using Repo;
 
 namespace IO
@@ -15,7 +16,7 @@ namespace IO
         public ClassTFAppDB()
         {
             //SetCon(@"Server = (localdb)\MSSQLLocalDB;Database=TFApp;Trusted_Connection=True;Trusted_Connection=True");
-            SetCon(@"Server = https://cp03.resellerhotel.dk:2083/cpsess9474677846/3rdparty/phpMyAdmin/db_structure.php?server=1&db=math027r_TF_RepoDB;Database=TF_RepoDB;Trusted_Connection=True;Trusted_Connection=True");
+            SetCon(@"SERVER=https://math027r.aspitcloud.dk; PORT=3306; Database=TF_RepoDB; UID=math027r; PASSWORD=yn0%uary(,R&");
         }
 
         public int CreateUser(ClassUser inUser)
@@ -28,18 +29,18 @@ namespace IO
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
+                using (MySqlCommand cmd = new MySqlCommand(sqlQuery, con))
                 {
-                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = inUser.id;
-                    cmd.Parameters.Add("@navn", SqlDbType.VarChar).Value = inUser.navn;
-                    cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = inUser.username;
-                    cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = inUser.password;
+                    cmd.Parameters.Add("@id", MySqlDbType.UInt32).Value = inUser.id;
+                    cmd.Parameters.Add("@navn", MySqlDbType.VarChar).Value = inUser.navn;
+                    cmd.Parameters.Add("@username", MySqlDbType.VarChar).Value = inUser.username;
+                    cmd.Parameters.Add("@password", MySqlDbType.VarChar).Value = inUser.password;
 
                     OpenDB();
                     res = cmd.ExecuteNonQuery();
                 }
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show($"ERROR Data Request did not return a Vaild Result! : {ex.Message}", "SQL-QUERY ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -51,37 +52,36 @@ namespace IO
             return res;
         }
 
-        
-        public ClassUser GetUserData(int id)
+
+        public ClassUser GetUserData(string username, string password)
         {
             ClassUser res = new ClassUser();
 
-            string sqlQuery = "SELECT navn, username, password FROM users WHERE id = @id";
+            string sqlQuery = "SELECT id, navn, username, password FROM users WHERE username = @username AND password = @password";
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
+                using (MySqlCommand cmd = new MySqlCommand(sqlQuery, con))
                 {
-                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = res.id;
-                    cmd.Parameters.Add("@navn", SqlDbType.VarChar).Value = res.navn;
-                    cmd.Parameters.Add("@username", SqlDbType.VarChar).Value = res.username;
-                    cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = res.password;
+                    cmd.Parameters.Add("@username", MySqlDbType.VarChar).Value = username;
+                    cmd.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;
 
                     OpenDB();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    MySqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        res.id = id;
-                        res.navn = reader.GetString(0);
-                        res.username = reader.GetString(1);
-                        res.password = reader.GetString(2);
+                        res.id = reader.GetInt32(0);
+                        res.navn = reader.GetString(1);
+                        res.username = reader.GetString(2);
+                        res.password = reader.GetString(3);
                     }
                     reader.Close();
                 }
+
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
-                MessageBox.Show($"ERROR Data Request did not return a Vaild Result! : {ex.Message}", "SQL-QUERY ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Dit Login er forkert : {ex.Message}", "Login fejl", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return res;
         }
@@ -98,20 +98,20 @@ namespace IO
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
+                using (MySqlCommand cmd = new MySqlCommand(sqlQuery, con))
                 {
-                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = inInput.id;
-                    cmd.Parameters.Add("@energi", SqlDbType.Int).Value = inInput.energi;
-                    cmd.Parameters.Add("@time", SqlDbType.DateTime).Value = inInput.time;
-                    cmd.Parameters.Add("@info", SqlDbType.VarChar).Value = inInput.info;
-                    cmd.Parameters.Add("@sleep", SqlDbType.Int).Value = inInput.sleep;
-                    cmd.Parameters.Add("@userid", SqlDbType.Int).Value = inInput.userid;
+                    cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = inInput.id;
+                    cmd.Parameters.Add("@energi", MySqlDbType.Int32).Value = inInput.energi;
+                    cmd.Parameters.Add("@time", MySqlDbType.DateTime).Value = inInput.time;
+                    cmd.Parameters.Add("@info", MySqlDbType.VarChar).Value = inInput.info;
+                    cmd.Parameters.Add("@sleep", MySqlDbType.Int32).Value = inInput.sleep;
+                    cmd.Parameters.Add("@userid", MySqlDbType.Int32).Value = inInput.userid;
 
                     OpenDB();
                     res = cmd.ExecuteNonQuery();
                 }
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show($"ERROR Data Request did not return a Vaild Result! : {ex.Message}", "SQL-QUERY ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -132,12 +132,12 @@ namespace IO
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
+                using (MySqlCommand cmd = new MySqlCommand(sqlQuery, con))
                 {
-                    cmd.Parameters.Add("@userid", SqlDbType.Int).Value = userid;
+                    cmd.Parameters.Add("@userid", MySqlDbType.Int32).Value = userid;
 
                     OpenDB();
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    MySqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
                         ClassInput ci = new ClassInput();
@@ -154,7 +154,7 @@ namespace IO
                     reader.Close();
                 }
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show($"ERROR Data Request did not return a Vaild Result! : {ex.Message}", "SQL-QUERY ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
