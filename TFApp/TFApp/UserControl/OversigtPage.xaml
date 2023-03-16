@@ -32,7 +32,7 @@
             </Grid.RowDefinitions>
 
             <!--Label med username-->
-            <Label Content="{Binding loginUser.username}"
+            <Label Content="{Binding loginUser.navn}"
                HorizontalContentAlignment="Center"
                Grid.Column="3"
                Grid.Row="1"

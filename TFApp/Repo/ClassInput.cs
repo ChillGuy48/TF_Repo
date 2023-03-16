@@ -12,18 +12,16 @@ namespace Repo
         private int _id;
         private int _energi;
         private DateTime _time;
-        private string _info;
-        private int _sleep;
         private int _userid;
+        //private string _dateStringColor;
 
         public ClassInput()
         {
             id = 0;
             energi = 0;
             time = DateTime.Now;
-            info = "";
-            sleep = 0;
             userid = 0;
+            //dateStringColor = "";
         }
 
         public int id
@@ -65,31 +63,18 @@ namespace Repo
             }
         }
 
-        public string info
-        {
-            get { return _info; }
-            set
-            {
-                if (_info != value)
-                {
-                    _info = value;
-                }
-                Notify();
-            }
-        }
-
-        public int sleep
-        {
-            get { return _sleep; }
-            set
-            {
-                if (_sleep != value)
-                {
-                    _sleep = value;
-                }
-                Notify();
-            }
-        }
+        //public string dateStringColor
+        //{
+        //    get { return _dateStringColor; }
+        //    set
+        //    {
+        //        if (_dateStringColor != value)
+        //        {
+        //            _dateStringColor = value;
+        //        }
+        //        Notify();
+        //    }
+        //}
 
         public int userid
         {

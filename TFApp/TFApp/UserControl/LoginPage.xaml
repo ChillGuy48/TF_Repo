@@ -52,9 +52,7 @@
             <Button Click="LoginToAccount" Content="Log In" Margin="60,30" Grid.Column="1" Grid.Row="5"/>
         </Grid>
 
-
         <Border Background="LightGray" CornerRadius="5" Grid.Column="3" Grid.Row="1" Grid.RowSpan="3"/>
-
 
         <Label Content="Register Account" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="5" Grid.Row="0"/>
 

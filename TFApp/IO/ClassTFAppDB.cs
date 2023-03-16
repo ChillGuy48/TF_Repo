@@ -74,13 +74,13 @@ namespace IO
                         res.navn = reader.GetString(1);
                         res.username = reader.GetString(2);
                         res.password = reader.GetString(3);
-                        MessageBox.Show($"Id: {res.id}\nNavn: {res.navn}\nUsername: {res.username}\nPassword: {res.password}", "Login", MessageBoxButton.OK, MessageBoxImage.Information);
-                        res.username = "logincorrect";
+                        //MessageBox.Show($"Id: {res.id}\nNavn: {res.navn}\nUsername: {res.username}\nPassword: {res.password}", "Login", MessageBoxButton.OK, MessageBoxImage.Information);
+                        res.status = "logincorrect";
                     }
                     else
                     {
                         MessageBox.Show($"Dit Login er forkert", "Login fejl", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        res.username = "logindeclied";
+                        res.status = "logindeclied";
                     }
                     reader.Close();
                 }
@@ -94,32 +94,30 @@ namespace IO
 
 
 
-        public int CreateEnergibarometer(ClassInput inInput)
+        public int CreateEnergibarometer(int energilevel, DateTime time, ClassUser userid)
         {
             int res = 0;
 
-            string sqlQuery = @"INSERT INTO input (id, energi, time, info, sleep, userid) VALUES
-                                (@id, @energi, @time, @info, @sleep, @userid)
-                                SELECT SCOPE_IDENTITY()";
+            string sqlQuery = @"INSERT INTO input (energi,time,userid) VALUES (@energi,@time,@userid)";
 
             try
             {
                 using (MySqlCommand cmd = new MySqlCommand(sqlQuery, con))
                 {
-                    cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = inInput.id;
-                    cmd.Parameters.Add("@energi", MySqlDbType.Int32).Value = inInput.energi;
-                    cmd.Parameters.Add("@time", MySqlDbType.DateTime).Value = inInput.time;
-                    cmd.Parameters.Add("@info", MySqlDbType.VarChar).Value = inInput.info;
-                    cmd.Parameters.Add("@sleep", MySqlDbType.Int32).Value = inInput.sleep;
-                    cmd.Parameters.Add("@userid", MySqlDbType.Int32).Value = inInput.userid;
+                    cmd.Parameters.Add("@energi", MySqlDbType.Int32).Value = energilevel;
+                    cmd.Parameters.Add("@time", MySqlDbType.DateTime).Value = time.Date;
+                    cmd.Parameters.Add("@userid", MySqlDbType.Int32).Value = userid.id;
 
                     OpenDB();
-                    res = cmd.ExecuteNonQuery();
+                    res = cmd.ExecuteNonQuery();            }
+                if (res == 0 || res == -1)
+                {
+                    MessageBox.Show($"Der opstod en fejl under processen", "Energibarometer fejl", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show($"ERROR Data Request did not return a Vaild Result! : {ex.Message}", "SQL-QUERY ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Der gik noget galt, Error Message:\n{ex.Message}", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
@@ -129,43 +127,80 @@ namespace IO
             return res;
         }
 
-
-        public List<ClassInput> GetEnergibarometerData(int userid)
+        public ClassInput GetEnergibarometerData(int userid, DateTime time)
         {
-            List<ClassInput> res = new List<ClassInput>();
+            ClassInput res = new ClassInput();
 
-            string sqlQuery = "SELECT id, energi, time, info, sleep, userid FROM input WHERE userid = @userid";
+            string sqlQuery = "SELECT userid, energi, time, id FROM input WHERE userid = @userid AND time = @time";
+            //string sqlQuery = "SELECT userid, energi, time, id FROM input WHERE userid = @userid";
 
             try
             {
                 using (MySqlCommand cmd = new MySqlCommand(sqlQuery, con))
                 {
-                    cmd.Parameters.Add("@userid", MySqlDbType.Int32).Value = userid;
+                    cmd.Parameters.Add("@userid", MySqlDbType.Int16).Value = userid;
+                    cmd.Parameters.Add("@time", MySqlDbType.Date).Value = time;
 
                     OpenDB();
                     MySqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        ClassInput ci = new ClassInput();
+                        res.userid = reader.GetInt16(0);
+                        res.energi = reader.GetInt16(1);
+                        res.time = reader.GetDateTime(2);
+                        res.id = reader.GetInt16(3);
 
-                        ci.id = reader.GetInt32(0);
-                        ci.energi = reader.GetInt32(1);
-                        ci.time = reader.GetDateTime(2);
-                        ci.info = reader.GetString(3);
-                        ci.sleep = reader.GetInt32(4);
-                        ci.userid = reader.GetInt32(5);
-
-                        res.Add(ci);
+                        //MessageBox.Show($"userid: {res.userid}\nid: {res.id}\ntime: {res.time}\nenergi: {res.energi}\ndateStringColor: {res.dateStringColor}", "Login", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        //MessageBox.Show($"Kunne ikke hente data fra DB", "DataBase fejl", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                     reader.Close();
                 }
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show($"ERROR Data Request did not return a Vaild Result! : {ex.Message}", "SQL-QUERY ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Der gik noget galt, Error Message:\n{ex.Message}", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return res;
         }
+        //public List<ClassInput> GetEnergibarometerData(int userid)
+        //{
+        //    List<ClassInput> res = new List<ClassInput>();
+
+        //    string sqlQuery = "SELECT id, energi, time, info, sleep, userid FROM input WHERE userid = @userid";
+
+        //    try
+        //    {
+        //        using (MySqlCommand cmd = new MySqlCommand(sqlQuery, con))
+        //        {
+        //            cmd.Parameters.Add("@userid", MySqlDbType.Int32).Value = userid;
+
+        //            OpenDB();
+        //            MySqlDataReader reader = cmd.ExecuteReader();
+        //            while (reader.Read())
+        //            {
+        //                ClassInput ci = new ClassInput();
+
+        //                ci.id = reader.GetInt32(0);
+        //                ci.energi = reader.GetInt32(1);
+        //                ci.time = reader.GetDateTime(2);
+        //                ci.info = reader.GetString(3);
+        //                ci.sleep = reader.GetInt32(4);
+        //                ci.userid = reader.GetInt32(5);
+
+        //                res.Add(ci);
+        //            }
+        //            reader.Close();
+        //        }
+        //    }
+        //    catch (MySqlException ex)
+        //    {
+        //        MessageBox.Show($"ERROR Data Request did not return a Vaild Result! : {ex.Message}", "SQL-QUERY ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //    return res;
+        //}
 
 
 

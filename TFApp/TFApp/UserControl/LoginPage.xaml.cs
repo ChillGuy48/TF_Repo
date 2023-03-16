@@ -38,7 +38,7 @@ namespace TFApp
                 if (BIZ.loginUser.password.Length > 0 && BIZ.loginUser.password.Length <= 64)
                 {
                     BIZ.Login(BIZ.loginUser.username, BIZ.loginUser.password);
-                    if (BIZ.loginstatus.username == "logincorrect")
+                    if (BIZ.loginUser.status == "logincorrect")
                     {
                         mainWindow.ChangePage("oversigtPage");
                     }

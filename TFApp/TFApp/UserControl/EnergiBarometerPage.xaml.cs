@@ -41,5 +41,32 @@ namespace TFApp
         {
             mainWindow.ChangePage("oversigtPage");
         }
+
+        private void SelectDate(object sender, RoutedEventArgs e)
+        {
+            BIZ.SelectDate(BIZ.selectedDate.Date);
+            //MessageBox.Show($"userid: {BIZ.energiBarometer.userid}\nid: {BIZ.energiBarometer.id}\ntime: {BIZ.energiBarometer.time}\nenergi: {BIZ.energiBarometer.energi}", "Login", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void GreenEnergibarometer(object sender, RoutedEventArgs e)
+        {
+            BIZ.UploadEnergibarometer(3, BIZ.selectedDate, BIZ.loginUser);
+            if (BIZ.returnvalue >= 1)
+            {
+                BIZ.SelectDate(BIZ.selectedDate.Date);
+                MessageBox.Show($"Du tilføjet noget til energibarometer", "Energibarometer Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                
+            }
+        }
+
+        private void YellowEnergibarometer(object sender, RoutedEventArgs e)
+        {
+            BIZ.UploadEnergibarometer(2, BIZ.selectedDate, BIZ.loginUser);
+        }
+
+        private void RedEnergibarometer(object sender, RoutedEventArgs e)
+        {
+            BIZ.UploadEnergibarometer(1, BIZ.selectedDate, BIZ.loginUser);
+        }
     }
 }
