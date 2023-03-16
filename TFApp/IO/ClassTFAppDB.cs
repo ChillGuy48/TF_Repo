@@ -17,7 +17,7 @@ namespace IO
         public ClassTFAppDB()
         {
             //SetCon(@"Server = (localdb)\MSSQLLocalDB;Database=TFApp;Trusted_Connection=True;Trusted_Connection=True");
-            SetCon(@"SERVER=math027r.aspitcloud.dk;PORT=3306;DATABASE=math027r_TF_RepoDB;UID=math027r;PASSWORD=GdrvU8DUovvHqfdowtJZ");
+            SetCon(@"SERVER=math027r.aspitcloud.dk;PORT=3306;DATABASE=math027r_TF_RepoDB;UID=math027r;PASSWORD=sThV5etSOizHvB8BnD7f");
         }
 
         public int CreateUser(ClassUser inUser)

@@ -18,7 +18,25 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-
+        
+        <Grid x:Name="BackGrid"
+            Grid.Column="0"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="3"
+               Grid.Row="0"
+               Margin="3"
+               Content=" Back "
+               HorizontalContentAlignment="Center"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               VerticalContentAlignment="Center"
+               Background="LightGray"
+                Click="Back"/>
+        </Grid>
+        
         <Grid x:Name="LogUdGrid"
             Grid.Column="3"
               Grid.Row="0">
@@ -27,7 +45,7 @@
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
-            <Label Content="{Binding loginUser.navn}"
+            <Label Content="{Binding loginUser.username}"
                HorizontalContentAlignment="Center"
                Grid.Column="3"
                Grid.Row="1"

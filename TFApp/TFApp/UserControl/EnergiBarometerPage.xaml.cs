@@ -36,5 +36,10 @@ namespace TFApp
             mainWindow.ChangePage("loginPage");
             BIZ.Logout();
         }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ChangePage("oversigtPage");
+        }
     }
 }
