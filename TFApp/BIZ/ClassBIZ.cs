@@ -18,6 +18,7 @@ namespace BIZ
         private ClassUser _registerUser;
         private ClassInput _energiBarometer;
         private DateTime _selectedDate;
+        private DateTime _selectedDatetemp;
         private int _selectedDateNumber;
         private string _selectedDateString;
         private string _selectedDateColor;
@@ -28,7 +29,9 @@ namespace BIZ
         {
             returnvalue = 0;
 
-            selectedDate = DateTime.Now;
+
+            selectedDate = DateTime.Today;
+            selectedDatetemp = DateTime.Today;
             selectedDateNumber = 0;
             selectedDateString = "";
             selectedDateColor = "";
@@ -100,6 +103,19 @@ namespace BIZ
                 Notify();
             }
         }
+        public DateTime selectedDatetemp
+        {
+            get { return _selectedDatetemp; }
+            set
+            {
+                if (_selectedDatetemp != value)
+                {
+                    _selectedDatetemp = value;
+                }
+                Notify();
+            }
+        }
+
 
         public ClassUser loginUser
         {
@@ -168,6 +184,7 @@ namespace BIZ
         public void SelectDate(DateTime time)
         {
             energiBarometer = classTFAppDB.GetEnergibarometerData(loginUser.id, time);
+            selectedDatetemp = energiBarometer.time.Date;
             if (energiBarometer.energi == 1)
             {
                 selectedDateColor = "PaleVioletRed";

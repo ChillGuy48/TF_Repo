@@ -83,16 +83,25 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="60"/>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                
-                <TextBox IsReadOnly="True" x:Name="StatusText" Text="{Binding selectedDateString, UpdateSourceTrigger=PropertyChanged}" Background="{Binding selectedDateColor, UpdateSourceTrigger=PropertyChanged}" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Margin="5,8" Grid.Column="1" Grid.Row="1"/>
+                <Grid Grid.Column="1" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="5"/>
+                    </Grid.RowDefinitions>
 
+                    <Label Content="{Binding selectedDatetemp}" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="9" Grid.Row="0"/>
+                    <TextBox IsReadOnly="True" x:Name="StatusText" Text="{Binding selectedDateString, UpdateSourceTrigger=PropertyChanged}" Background="{Binding selectedDateColor, UpdateSourceTrigger=PropertyChanged}" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Margin="5,8" Grid.Row="1"/>
+
+                </Grid>
+                
                 <Border Background="LightGray" Margin="5,7" CornerRadius="5" Grid.Column="1" Grid.Row="2"/>
 
                 <Button x:Name="GreenStatusButton" Click="GreenEnergibarometer" Content="Grøn" Background="LightGreen" Margin="5" Grid.Column="1" Grid.Row="3"/>

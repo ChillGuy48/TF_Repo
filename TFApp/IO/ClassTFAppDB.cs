@@ -154,7 +154,8 @@ namespace IO
                     }
                     else
                     {
-                        //MessageBox.Show($"Kunne ikke hente data fra DB", "DataBase fejl", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        res.energi = 0;
+                        MessageBox.Show($"Denne dag indeholder ingen energibarometer", "Energibarometer", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                     reader.Close();
                 }
